@@ -75,21 +75,24 @@ export default function PostForm({
 
   if (!isOpen && !editingPost) {
     return (
-      <div className="p-6">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 border border-black bg-white text-black hover:bg-black hover:text-white transition-colors duration-200 text-sm font-medium"
-        >
-          <Plus size={16} />
-          Create Post
-        </button>
+      <div className="p-6 pb-0">
+        <h2 className="mb-4 font-bold text-2xl">Post Management</h2>
+        <div className="p-6 border rounded-lg rounded-b-none border-b-0 border-black">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 border border-black bg-white text-black hover:bg-black hover:text-white transition-colors duration-200 text-sm font-medium"
+          >
+            <Plus size={16} />
+            Create Post
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="p-6 ">
-      <div className="border border-black bg-white">
+    <div className="p-6   pb-0">
+      <div className="border rounded-lg rounded-b-none border-b-0 border-black bg-white">
         <div className="flex items-center justify-between p-4 border-b border-black">
           <h2 className="text-lg font-medium">
             {editingPost ? "Edit Post" : "Create New Post"}

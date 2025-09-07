@@ -20,6 +20,7 @@ export default async function FetchPage() {
 
     return (
       <div  className="max-w-3xl p-5 mx-auto   bg-gray-50">
+        <h2 className="mb-4 font-bold text-2xl">Fetched Content From Github </h2>
         <div
         className="border p-5 rounded-lg  " 
         >

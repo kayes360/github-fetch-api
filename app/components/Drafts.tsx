@@ -9,7 +9,8 @@ interface DraftsProps {
   onDeleteDraft: (id: string) => void;
   onEditDraft: (draft: UserPost) => void;
   onSubmit: (action: "draft" | "publish" | "update") => void;
-}
+  handlePublishAll: () => Promise<void>;
+} 
 
 export default function Drafts({
   title,
@@ -18,15 +19,18 @@ export default function Drafts({
   onDeleteDraft,
   onEditDraft,
   onSubmit,
+  handlePublishAll
 }: DraftsProps) {
   if (drafts.length === 0) {
     return (
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="p-6 pt-0">
+
+        <div className="border rounded-lg rounded-t-none border-t-0 border-black bg-white p-6">
+            <div className=" flex items-center justify-between mb-4  ">
           <h2 className="text-lg font-medium mb-4">Drafts</h2>
 
           <button
-            onClick={() => onSubmit("publish")}
+           onClick={handlePublishAll} 
             // Corrected logic: button is disabled if there are no drafts
             disabled={drafts.length === 0}
             className="px-4 py-2 bg-black text-white hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
@@ -37,16 +41,19 @@ export default function Drafts({
         <p className="text-gray-600 text-sm">
           No drafts yet. Create a post and save it as a draft.
         </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="p-6">
+    <div className="p-6 pt-0">
+        <div className="border rounded-lg rounded-t-none border-t-0 border-black bg-white p-6">
+
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-medium">Drafts ({drafts.length})</h2>
         <button
-          onClick={() => onSubmit("publish")}
+         onClick={handlePublishAll} 
           // Corrected logic: button is enabled if there is at least one draft
           disabled={drafts.length === 0}
           className="px-4 py-2 bg-black text-white hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
@@ -86,6 +93,7 @@ export default function Drafts({
           </div>
         ))}
       </div>
+        </div>
     </div>
   );
 }

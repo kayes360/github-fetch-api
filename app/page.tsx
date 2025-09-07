@@ -4,12 +4,13 @@ import PostManagement from "./components/PostManagement";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex   gap-[32px] row-start-2 items-center sm:items-start">
-    <FetchPage/>
-    <PostManagement/>
+    <div className="font-sans min-h-screen flex items-center justify-center">
+      <main className="max-w-7xl mx-auto px-4 ">
+        <div className=" flex flex-col-reverse md:flex-row   gap-[32px] items-start  border"> 
+             <FetchPage />
+            <PostManagement /> 
+        </div>
       </main>
-    
     </div>
   );
 }
