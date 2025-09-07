@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GitHub Fetch API
 
-## Getting Started
+A Next.js application that interacts with the GitHub API to fetch and display repository information and markdown content.
 
-First, run the development server:
+## 🚀 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Live Site:** [https://github-fetch-api.vercel.app/](https://github-fetch-api.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**GitHub Repository:** [https://github.com/kayes360/github-fetch-api](https://github.com/kayes360/github-fetch-api)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📋 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✅ Fetch Markdown content from a public GitHub repository (e.g., content/hello.md)
 
-## Learn More
+✅ Render it using React Markdown
 
-To learn more about Next.js, take a look at the following resources:
+✅ Create, Edit, and Delete local drafts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✅ Publish all drafts to GitHub as Markdown files via the GitHub API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+✅ Uses Lucide React for icons
 
-## Deploy on Vercel
+ 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🏃‍♂️ Running Locally
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Prerequisites
+
+- Node.js (version 16 or higher)
+- npm or yarn
+- GitHub Personal Access Token
+
+### Installation Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/kayes360/github-fetch-api.git
+   cd github-fetch-api
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Set up environment variables**
+   
+   Create a `.env` file in the root directory:
+  
+   
+   Add your GitHub API key to `.env.local`:
+   ```env
+   GITHUB_API_KEY=your_github_personal_access_token_here
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open your browser**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
+ 
+ 
+
+## 📦 Dependencies
+
+### Main Dependencies
+- `next` - React framework for production
+- `react` - JavaScript library for building user interfaces
+- `react-dom` - React package for working with the DOM
+- `lucide-react` - Beautiful & consistent icon toolkit
+- `react-markdown` - Markdown component for React 
+ 
+ 
+
