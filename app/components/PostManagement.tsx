@@ -1,16 +1,30 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserPost } from "../types/model";
 import Drafts from "./Drafts";
 import PostForm from "./PostForm";
 
 export default function PostManagement() {
-  const [drafts, setDrafts] = useState<UserPost[]>([]);
+      const [drafts, setDrafts] = useState<UserPost[]>([]);
   const [editingPost, setEditingPost] = useState<UserPost | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const [title, setTitle] = useState(editingPost?.title || "");
   const [body, setBody] = useState(editingPost?.body || "");
-
+ useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedDrafts = localStorage.getItem("userDrafts");
+      if (savedDrafts) {
+        setDrafts(JSON.parse(savedDrafts));
+      }
+      setIsLoaded(true);
+    }
+  }, []);
+    useEffect(() => {
+    if (isLoaded && typeof window !== 'undefined') {
+      localStorage.setItem("userDrafts", JSON.stringify(drafts));
+    }
+  }, [drafts, isLoaded]);
   const handleAddToDraft = (post: Omit<UserPost, "id">) => {
     const newDraft: UserPost = {
       ...post,
