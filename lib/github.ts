@@ -2,7 +2,7 @@ export async function publishFileToGitHub(filename: string, content: string) {
   const repoOwner = "kayes360";
   const repoName = "posts-md";
   const path = `posts/${filename}`;
-  const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;  
+  const token = process.env.GITHUB_TOKEN;  
 
   const res = await fetch(
     `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`,
