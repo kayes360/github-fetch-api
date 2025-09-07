@@ -1,7 +1,6 @@
-
-'use client'
-import React, { useState } from 'react';
-import { Plus, X, Edit, Trash2 } from 'lucide-react';
+"use client";
+import React, { useState } from "react";
+import { Plus, X, Edit, Trash2 } from "lucide-react";
 
 interface UserPost {
   id: string;
@@ -10,17 +9,33 @@ interface UserPost {
 }
 
 interface PostFormProps {
-  onAddToDraft: (post: Omit<UserPost, 'id'>) => void;
-  onPublish: (post: Omit<UserPost, 'id'>) => void;
+  title: string;
+  body: string;
+  setTitle: (value: string) => void;
+
+  setBody: (value: string) => void;
+
+  onAddToDraft: (post: Omit<UserPost, "id">) => void;
+  onPublish: (post: Omit<UserPost, "id">) => void;
   onUpdateDraft?: (post: UserPost) => void;
   editingPost?: UserPost | null;
   onCancelEdit?: () => void;
+  onSubmit: (action: "draft" | "publish" | "update") => void;
 }
 
-export default function PostForm({ onAddToDraft, onPublish, onUpdateDraft, editingPost, onCancelEdit }: PostFormProps) {
+export default function PostForm({
+  title,
+  body,
+  setTitle,
+  setBody,
+  onAddToDraft,
+  onPublish,
+  onUpdateDraft,
+  editingPost,
+  onCancelEdit,
+  onSubmit,
+}: PostFormProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [title, setTitle] = useState(editingPost?.title || '');
-  const [body, setBody] = useState(editingPost?.body || '');
 
   // Open form when editing post is set
   React.useEffect(() => {
@@ -31,30 +46,30 @@ export default function PostForm({ onAddToDraft, onPublish, onUpdateDraft, editi
     }
   }, [editingPost]);
 
-  const handleSubmit = (action: 'draft' | 'publish' | 'update') => {
+  const handleSubmit = (action: "draft" | "publish" | "update") => {
     if (!title.trim() || !body.trim()) return;
-    
+
     const post = { title: title.trim(), body: body.trim() };
-    
-    if (action === 'update' && editingPost && onUpdateDraft) {
+
+    if (action === "update" && editingPost && onUpdateDraft) {
       onUpdateDraft({ ...editingPost, ...post });
-    } else if (action === 'draft') {
+    } else if (action === "draft") {
       onAddToDraft(post);
-    } else if (action === 'publish') {
+    } else if (action === "publish") {
       onPublish(post);
     }
-    
+
     // Reset form
-    setTitle('');
-    setBody('');
+    setTitle("");
+    setBody("");
     setIsOpen(false);
     if (onCancelEdit) onCancelEdit();
   };
 
   const handleClose = () => {
     setIsOpen(false);
-    setTitle('');
-    setBody('');
+    setTitle("");
+    setBody("");
     if (onCancelEdit) onCancelEdit();
   };
 
@@ -73,11 +88,11 @@ export default function PostForm({ onAddToDraft, onPublish, onUpdateDraft, editi
   }
 
   return (
-    <div className="p-6">
+    <div className="p-6 ">
       <div className="border border-black bg-white">
         <div className="flex items-center justify-between p-4 border-b border-black">
           <h2 className="text-lg font-medium">
-            {editingPost ? 'Edit Post' : 'Create New Post'}
+            {editingPost ? "Edit Post" : "Create New Post"}
           </h2>
           <button
             onClick={handleClose}
@@ -86,7 +101,7 @@ export default function PostForm({ onAddToDraft, onPublish, onUpdateDraft, editi
             <X size={20} />
           </button>
         </div>
-        
+
         <div className="p-4 space-y-4">
           <div>
             <label htmlFor="title" className="block text-sm font-medium mb-2">
@@ -101,7 +116,7 @@ export default function PostForm({ onAddToDraft, onPublish, onUpdateDraft, editi
               placeholder="Enter post title..."
             />
           </div>
-          
+
           <div>
             <label htmlFor="body" className="block text-sm font-medium mb-2">
               Body
@@ -115,12 +130,12 @@ export default function PostForm({ onAddToDraft, onPublish, onUpdateDraft, editi
               placeholder="Write your post content..."
             />
           </div>
-          
+
           <div className="flex gap-3 pt-2">
             {editingPost ? (
               <>
                 <button
-                  onClick={() => handleSubmit('update')}
+                  onClick={() => handleSubmit("update")}
                   disabled={!title.trim() || !body.trim()}
                   className="px-4 py-2 bg-black text-white hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
                 >
@@ -136,18 +151,11 @@ export default function PostForm({ onAddToDraft, onPublish, onUpdateDraft, editi
             ) : (
               <>
                 <button
-                  onClick={() => handleSubmit('draft')}
+                  onClick={() => handleSubmit("draft")}
                   disabled={!title.trim() || !body.trim()}
                   className="px-4 py-2 border border-black bg-white text-black hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
                 >
                   Add to Draft
-                </button>
-                <button
-                  onClick={() => handleSubmit('publish')}
-                  disabled={!title.trim() || !body.trim()}
-                  className="px-4 py-2 bg-black text-white hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
-                >
-                  Publish
                 </button>
               </>
             )}

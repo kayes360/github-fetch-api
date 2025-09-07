@@ -19,14 +19,9 @@ export default async function FetchPage() {
     const content = await fetchMarkdownContent();
 
     return (
-      <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+      <div  className="max-w-3xl p-5 mx-auto   bg-gray-50">
         <div
-          style={{
-            border: "1px solid #ddd",
-            padding: "20px",
-            borderRadius: "8px",
-            backgroundColor: "#fff",
-          }}
+        className="border p-5 rounded-lg  " 
         >
           <ReactMarkdown>{content}</ReactMarkdown>
         </div>
