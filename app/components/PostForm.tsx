@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Plus, X, Edit, Trash2 } from "lucide-react";
+import { Plus, X } from "lucide-react";
 
 interface UserPost {
   id: string;
@@ -36,8 +36,7 @@ export default function PostForm({
   onSubmit,
 }: PostFormProps) {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Open form when editing post is set
+ 
   React.useEffect(() => {
     if (editingPost) {
       setTitle(editingPost.title);

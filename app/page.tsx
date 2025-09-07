@@ -1,8 +1,8 @@
-import Image from "next/image";
+ 
 import FetchPage from "./components/FetchPage";
 import PostManagement from "./components/PostManagement";
 
-export default function Home() {
+export default function Home() {  
   return (
     <div className="font-sans min-h-screen flex items-center justify-center">
       <main className="max-w-7xl mx-auto px-4 ">
