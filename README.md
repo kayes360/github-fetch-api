@@ -50,9 +50,9 @@ A Next.js application that interacts with the GitHub API to fetch and display re
    Create a `.env` file in the root directory:
   
    
-   Add your GitHub API key to `.env.local`:
+   Add your GitHub API key to `.env`:
    ```env
-   GITHUB_API_KEY=your_github_personal_access_token_here
+   GITHUB_API_KEY=your_github_personal_access_token_here(access_token_is_shared_with_email_submisstion)
    ```
 
 4. **Start the development server**
